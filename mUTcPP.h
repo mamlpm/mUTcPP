@@ -15,16 +15,10 @@ public:
         error = 31,
         success = 32
     };
-    //TODO
+    // TODO
     template <typename T>
     bool checkIfFunctionWorks(testingFunction functionPointer, T expectedValue);
-    //TODO
-    void setRedTerminal();
-    //TODO
-    void setGreendTerminal();
-    //TODO
-    void setDefaultTerminal();
-    //TODO
+    static void setTerminal(int colour);
     void writeMessage(messageType messageT, string message);
 
 private:
