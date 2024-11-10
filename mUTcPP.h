@@ -4,10 +4,11 @@
 #include <vector>
 #include <string>
 using namespace std;
+template <typename T>
 class mUTcPP
 {
 public:
-    typedef bool (*testingFunction)();
+    using testingFunction = T (*)();
     mUTcPP(vector<testingFunction> parsedVector);
     enum messageType
     {
@@ -16,13 +17,11 @@ public:
         success = 32
     };
     // TODO
-    template <typename T>
     bool checkIfFunctionWorks(testingFunction functionPointer, T expectedValue);
-    static void setTerminal(int colour);
     void writeMessage(messageType messageT, string message);
 
 private:
-    vector<testingFunction>
-        functionsToTest_;
+    static void setTerminal(int colour);
+    vector<testingFunction> functionsToTest_;
 };
 #endif
