@@ -9,7 +9,16 @@ class mUTcPP
 {
 public:
     using testingFunction = T (*)();
-    mUTcPP(vector<testingFunction> parsedVector);
+    typedef struct inputData
+    {
+        testingFunction functionName;
+        string strFunctionName;
+        vector<string> params;
+        string overRideSpec;
+        T expectedValue;
+    };
+    
+    mUTcPP(vector<inputData> parsedVector);
     enum messageType
     {
         message = 0,
@@ -17,11 +26,13 @@ public:
         success = 32
     };
     // TODO
-    bool checkIfFunctionWorks(testingFunction functionPointer, T expectedValue);
-    void writeMessage(messageType messageT, string message);
+    void runAllFunctions();
+    
 
 private:
     static void setTerminal(int colour);
-    vector<testingFunction> functionsToTest_;
+    vector<inputData> functionsToTest_;
+    void checkIfFunctionWorks(inputData functionPointer);
+    void writeMessage(messageType messageT, string message);
 };
 #endif

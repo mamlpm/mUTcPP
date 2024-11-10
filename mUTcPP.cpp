@@ -1,7 +1,7 @@
 #include "mUTcPP.h"
 
 template <typename T>
-mUTcPP<T>::mUTcPP(vector<testingFunction> parsedVector)
+mUTcPP<T>::mUTcPP(vector<inputData> parsedVector)
 {
     functionsToTest_ = parsedVector;
 }
@@ -19,9 +19,26 @@ void mUTcPP<T>::writeMessage(messageType messageT, string message)
 }
 
 template <typename T>
-bool mUTcPP<T>::checkIfFunctionWorks(testingFunction functionPointer, T expectedValue) {
-    T result = functionPointer();
-    return result == expectedValue;
+void mUTcPP<T>::checkIfFunctionWorks(inputData functionSpec)
+{
+    writeMessage(message, "Comprobando la función: " + funcionSpec.strFunctionName);
+    T result = funcionSpec.functionName();
+    if (result == functionSpec.expectedValue)
+    {
+        writeMessage(success, "Done\n");
+    }
+    else
+    {
+        writeMessage(error, "Error\n");
+    }
+}
+template <typename T>
+void mUTcPP<T>::runAllFunctions()
+{
+    for (inputData functionToTest : functionsToTest_)
+    {
+        checkIfFunctionWorks(functionToTest);
+    }
 }
 
 template class mUTcPP<bool>;
